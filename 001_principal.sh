@@ -7,11 +7,11 @@ funcion_mision_inicial() {
 	echo
 
 	echo "Prof. Oak: Bueno, la verdad que me da igual, no creo que te vuelva a ver después de mandarte esta misión."
-	read press_button
+	read -p "__________________________________________________" press_button
 	echo "Prof. Oak: Escucha, esto es una Pokédex, hay muchos Pokémon y necesito que los encuentres a todos."
-	read press_button
+	read -p "__________________________________________________" press_button
 	echo "Prof. Oak: Te daría un Pokémon mío para ayudarte con tu misión, pero son míos..."
-	read press_button
+	read -p "__________________________________________________" press_button
 	echo "Prof. Oak: ¿Por qué no capturas uno tú mismo?"
 	echo
 	echo "1) Hombre, es que sin Pokémon me da algo de miedo yo qué se..."
@@ -25,17 +25,17 @@ funcion_mision_inicial() {
 		read -p ":"  respuesta_mision_inicial
 		if [ $respuesta_mision_inicial -eq 1 ]; then
 			echo "Prof. Oak: ¿Y para qué tienes los puños?"
-			read press_button
+			read -p "__________________________________________________" press_button
 			echo "Prof. Oak: Ven, salgamos del laboratorio y vayamos al Bosque Negreira, está aquí al lado."
-			read press_button
+			read -p "__________________________________________________" press_button
 			evento_mision_inicial=1
 		elif [ $respuesta_mision_inicial -eq 2 ]; then
 			echo "Prof. Oak: Así me gusta, pues mira, aquí al lado tienes el Bosque Negreira, está lleno de Pokémon, vamos..."
-			read press_button
+			read -p "__________________________________________________" press_button
 			evento_mision_inicial=1
 		elif [ $respuesta_mision_inicial -eq 3 ]; then
 			echo "Prof. Oak: Eso es de tontos, deja de decir tonterías y salgamos del laboratorio, vamos al Bosque Negreira, está aquí al lado."
-			read press_button
+			read -p "__________________________________________________" press_button
 			evento_mision_inicial=1
 		else
 			echo "Prof. Oak: Quieres hacer el favor de escoger una opción de las que te doy?"
@@ -73,34 +73,36 @@ EOF
 directorio_partida="${HOME}/pokemon_juan"
 
 echo "¡Bienvenido!"
-read press_button
+read -p "__________________________________________________" press_button
 echo "Estás jugando en la sesión de $(whoami)."
-read press_button
+read -p "__________________________________________________" press_button
 
 if [ ! -e $directorio_partida ]; then
 	echo "No se encontró ninguna partida guardada, los datos de partida se crearán en $directorio_partida."
 	mkdir -p ${directorio_partida}
 	touch "${directorio_partida}/evento.txt"
 	echo 0 > "${directorio_partida}/evento.txt"
+	read -p "__________________________________________________" press_button
 else
 	echo "Ya existe una partida guardada; continuarás tu aventura desde donde la dejaste."
-	read press_button
+	read -p "__________________________________________________" press_button
 fi
 
 evento_actual=`cat "${directorio_partida}/evento.txt"`
-echo "$evento_actual"
 
-cat << 'EOF'
- +-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
- |P|u|e|b|l|o| |N|e|g|r|e|i|r|a|
- +-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
-EOF
+
 
 if [ $evento_actual -eq 0 ]; then
+
+cat << 'EOF'
+	 +-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
+	 |P|u|e|b|l|o| |N|e|g|r|e|i|r|a|
+	 +-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+
+EOF
 	echo "Prof. Oak: Bienvenido al muy buen mundo de Pokémon, un mundo muy bueno la verdad."
 	read press_button
-	echo "Prof. Oak:Tú, Cazabichos Juan, vas a comenzar tu aventura!"
-	read press_button
+	echo "Prof. Oak: Tú, Cazabichos Juan, vas a comenzar tu aventura!"
+	read -p "__________________________________________________" press_button
 	echo "Prof. Oak: Pero antes, dime...¿Eres un chico o una chica?"
 	printf "Chico (1)\nChica (2)\nNo lo sé... (3)\n"
 	evento_chique=0
@@ -120,6 +122,7 @@ if [ $evento_actual -eq 0 ]; then
 		else
 			echo "Prof. Oak: Tienes que elegir 1, 2 o 3."
 		fi
+		read -p "__________________________________________________" press_button
 	done
 # aqui los elif para los demas eventos y que ejecute los scripts de otros capitulos	
 elif [ $evento_actual -eq 1 ]; then
