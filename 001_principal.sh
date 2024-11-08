@@ -46,7 +46,7 @@ evento_actual=`cat "${directorio_partida}/evento.txt"`
 echo "Evento actual: ${evento_actual}"
 
 if [ $evento_actual == 0 ]; then
-	echo "Bienvenido al muy buen mundo de Pokémon, un mundo muy bueno la verdad."
+	echo "Prof Oak: Bienvenido al muy buen mundo de Pokémon, un mundo muy bueno la verdad."
 	read press_button
 	echo "Tú, Cazabichos Juan, vas a comenzar tu aventura!"
 	read press_button
@@ -69,3 +69,6 @@ if [ $evento_actual == 0 ]; then
 		fi
 	done
 fi
+
+echo
+
